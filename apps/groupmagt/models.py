@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 class TaskModel(BaseModel):
     groupId: str = Field(default_factory=uuid.uuid4, alias="_id")
     group_name: str = Field(...)
-    group_managers: array = Field(...)
+    group_managers: str = Field(...)
     signup_date: str = Field(...)
 
     class Config:
