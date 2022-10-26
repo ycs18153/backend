@@ -17,7 +17,7 @@ class TaskModel(BaseModel):
             "example": {
                 "groupId": "C8c55ed54b7107dd775c55b1483a7fef3",
                 "group_name": "R",
-                "group_managers": "TWC",
+                "group_managers": ["TWC"],
                 "signup_date": "2022-10-20-20:10:00",
             }
         }
