@@ -1,6 +1,6 @@
 from array import array
 from multiprocessing import managers
-from typing import Optional
+from typing import Optional, List
 import uuid
 from pydantic import BaseModel, Field
 
@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 class TaskModel(BaseModel):
     groupId: str = Field(default_factory=uuid.uuid4, alias="_id")
     group_name: str = Field(...)
-    group_managers: str = Field(...)
+    group_managers: List[str] = Field(...)
     signup_date: str = Field(...)
 
     class Config:
