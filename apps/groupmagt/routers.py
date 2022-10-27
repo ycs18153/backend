@@ -37,6 +37,7 @@ async def show_task(id: str, request: Request):
 @router.put("/{id}", response_description="Update the specific group info")
 async def update_task(id: str, request: Request, group: UpdateTaskModel = Body(...)):
     group = {k: v for k, v in group.dict().items() if v is not None}
+    print(group)
 
     if len(group) >= 1:
         update_result = await request.app.mongodb["group_id"].update_one(
