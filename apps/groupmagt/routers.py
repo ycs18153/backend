@@ -2,13 +2,23 @@ from fastapi import APIRouter, Body, Request, HTTPException, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
-from .models import TaskModel, UpdateTaskModel
+from .models import groupModel, authenticationCodeModel, UpdateTaskModel
 
 router = APIRouter()
 
+# get all authentication codes
+
+
+@router.get("/authentication_code", response_description="check the code is wether enable")
+async def check_code(request: Request):
+    codes = []
+    for doc in await request.app.mongodb["authentication_code"].find().to_list(length=100):
+        codes.append(doc)
+    return codes
+
 
 @router.post("/", response_description="Add new group")
-async def create_group(request: Request, group: TaskModel = Body(...)):
+async def create_group(request: Request, group: groupModel = Body(...)):
     group = jsonable_encoder(group)
     new_group = await request.app.mongodb["group_id"].insert_one(group)
     created_task = await request.app.mongodb["group_id"].find_one(
