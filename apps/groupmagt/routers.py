@@ -9,7 +9,7 @@ router = APIRouter()
 # get all authentication codes
 
 
-@router.get("/authentication_code", response_description="check the code is wether enable")
+@router.get("/", response_description="check the code is wether enable")
 async def check_code(request: Request):
     codes = []
     for doc in await request.app.mongodb["authentication_code"].find().to_list(length=100):
